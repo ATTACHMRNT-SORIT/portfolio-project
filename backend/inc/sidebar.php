@@ -15,10 +15,9 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0" />
-
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="../dashboard/index.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a
           >
@@ -29,7 +28,10 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">MENU</div>
-
+<!-- C-
+R
+U
+D -->
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
           <a
@@ -51,8 +53,8 @@
           >
             <div class="bg-white py-2 collapse-inner rounded">
            
-              <a class="collapse-item" href="#">Add New</a>
-              <a class="collapse-item" href="#">View All</a>
+              <a class="collapse-item" href="../categories/create.php">Add New</a>
+              <a class="collapse-item" href="../categories/index.php">View All</a>
             </div>
           </div>
         </li>
@@ -78,8 +80,8 @@
           >
             <div class="bg-white py-2 collapse-inner rounded">
           
-              <a class="collapse-item" href="#">Add Blog</a>
-              <a class="collapse-item" href="#">My Blogs</a>
+              <a class="collapse-item" href="../posts/create.php">Add Blog</a>
+              <a class="collapse-item" href="../posts/index.php">My Blogs</a>
           
             </div>
           </div>
@@ -93,8 +95,8 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                
-                    <a class="collapse-item" href="#">Add Project</a>
-                    <a class="collapse-item" href="#">My Project</a>
+                    <a class="collapse-item" href="../projects/create.php">Add Project</a>
+                    <a class="collapse-item" href="../projects/index.php">My Project</a>
                  
                 </div>
             </div>
@@ -103,7 +105,7 @@
   
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="../contact/index.php">
             <i class="fas fa-fw fa-folder"></i>
             <span>Contacts</span></a
           >
