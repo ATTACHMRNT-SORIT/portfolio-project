@@ -1,5 +1,20 @@
 <?php include "../inc/app.php"; ?>
+<?php
+include "../config.php";
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $sql = "INSERT INTO `categories`(`name`) 
+  VALUES ('$name')";
+    $result = $conn->query($sql);
+    if ($result == TRUE) {
+        echo "New record inserted successfully";
+    } else {
+        echo "Error during insertion of data";
+    }
+    $conn->close();
+}
 
+?>
 <div id="wrapper">
     <!-- Sidebar -->
     <?php include "../inc/sidebar.php"; ?>
@@ -24,18 +39,18 @@
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
                                 <h3>Add Category</h3>
-                                <form>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Category Name</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            </div>
-                       
-                       
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
+                                <form action="" method="POST">
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Category Name</label>
+                                        <input type="text" name="name" class="form-control" id="exampleInputEmail1" >
+                                    </div>
+
+
+                                    <button type="submit" value="submit" name="submit" class="btn btn-primary">Submit</button>
+                                </form>
                             </div>
                         </div>
-                        
+
                     </div>
 
                 </div>
