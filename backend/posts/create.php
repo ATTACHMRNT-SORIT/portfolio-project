@@ -23,8 +23,12 @@
                     <div class="container">
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
-                                <h3>Add Category</h3>
-                                <form>
+                                <h3>Add Post</h3>
+                                <form method="post" action="addentry.php">
+                                    <textarea id="summernote" name="entry"></textarea>
+                                    <input type="submit" value="submit" class="btn btn-lg btn-success" name="submit" />
+                                </form>
+                                <!-- <form>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Category Name</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -32,10 +36,10 @@
                        
                        
                             <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
+                        </form> -->
                             </div>
                         </div>
-                        
+
                     </div>
 
                 </div>
@@ -49,3 +53,8 @@
     </div>
     <!-- End of Content Wrapper -->
 </div>
+<script>
+$(document).ready(function() {
+  $('#summernote').summernote();
+});
+</script>
