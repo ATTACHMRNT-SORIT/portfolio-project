@@ -1,19 +1,41 @@
 <?php
-$mysqli = new mysqli("localhost", "username", "password", "summernote_example");
-if ($mysqli->connect_errno) {
-  die("Failed to connect to MySQL: " . $mysqli->connect_error);
+include "../config.php";
+$statusMsg = '';
+// File upload path
+$targetDir = "../uploads";
+$fileName = basename($_FILES["file"]["name"]);
+$targetFilePath = $targetDir . $fileName;
+$fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+
+if(isset($_POST["submit"]) && !empty($_FILES["image"]["name"])){
+  // Escape the form data to prevent SQL injection attacks
+$title = $conn->real_escape_string($_POST['title']);
+$content = $conn->real_escape_string($_POST['content']);
+$description = $conn->real_escape_string($_POST['description']);
+    // Allow certain file formats
+    $allowTypes = array('jpg','png','jpeg','gif','pdf');
+    if(in_array($fileType, $allowTypes)){
+        // Upload file to server
+        if(move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)){
+            // Insert image file name into database
+            $insert = $conn->query("INSERT into blogs (image, title, content, description) VALUES ('".$fileName."', '$title', '$content','$description')");
+            if($insert){
+                $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+            }else{
+                $statusMsg = "File upload failed, please try again.";
+            } 
+        }else{
+            $statusMsg = "Sorry, there was an error uploading your file.";
+        }
+    }else{
+        $statusMsg = 'Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.';
+    }
+}else{
+    $statusMsg = 'Please select a file to upload.';
 }
 
-// Escape the form data to prevent SQL injection attacks
-$title = $mysqli->real_escape_string($_POST['title']);
-$content = $mysqli->real_escape_string($_POST['content']);
-
-// Insert the data into the MySQL database
-$query = "INSERT INTO notes (title, content) VALUES ('$title', '$content')";
-if (!$mysqli->query($query)) {
-  die("Failed to save note: " . $mysqli->error);
-}
-
+// Display status message
+echo $statusMsg;
 // Redirect the user back to the form
 header("Location: index.php");
 
