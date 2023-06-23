@@ -3,15 +3,15 @@ include "../config.php";
 $statusMsg = '';
 // File upload path
 $targetDir = "../uploads";
-$fileName = basename($_FILES["file"]["name"]);
+$fileName = basename($_FILES["image"]["name"]);
 $targetFilePath = $targetDir . $fileName;
 $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
 
 if(isset($_POST["submit"]) && !empty($_FILES["image"]["name"])){
   // Escape the form data to prevent SQL injection attacks
-$title = $conn->real_escape_string($_POST['title']);
-$content = $conn->real_escape_string($_POST['content']);
-$description = $conn->real_escape_string($_POST['description']);
+$title = $_POST['title'];
+$content = $_POST['content'];
+$description = $_POST['description'];
     // Allow certain file formats
     $allowTypes = array('jpg','png','jpeg','gif','pdf');
     if(in_array($fileType, $allowTypes)){

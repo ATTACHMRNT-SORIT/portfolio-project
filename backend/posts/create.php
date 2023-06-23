@@ -31,6 +31,19 @@
                                 <h3>Add Post</h3>
                                 <form method="post" action="addentry.php">
                                     <div class="mb-3">
+                                        <select name="category_id" class="form-control">
+                                                <?php
+                                                $sql = "SELECT * FROM categories";
+                                                $result = $conn->query($sql);
+                                                if ($result) {
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        echo "<option value = " . $row['id'] . ">" . $row['name'] . "</option>";
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="image" class="form-label">Select image</label>
                                         <input type="file" class="form-control" name="image" id="image">
                                     </div>
