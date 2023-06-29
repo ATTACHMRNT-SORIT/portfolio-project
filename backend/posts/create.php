@@ -10,7 +10,7 @@
 
 
 
-<!-- Sidebar -->
+    <!-- Sidebar -->
     <?php include "../inc/sidebar.php"; ?>
 
     <!-- End of Sidebar -->
@@ -35,17 +35,22 @@
                                 <h3>Add Post</h3>
                                 <form method="post" action="addentry.php">
                                     <div class="mb-3">
-                                        <select name="category_id" class="form-control">
-                                                <?php
-                                                $sql = "SELECT * FROM categories";
-                                                $result = $conn->query($sql);
-                                                if ($result) {
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        echo "<option value = " . $row['id'] . ">" . $row['name'] . "</option>";
-                                                    }
-                                                }
-                                                ?>
-                                            </select>
+                                        <?php
+                                        $con = mysqli_connect("localhost", "root", "", "portfolio");
+                                        if (mysqli_connect_errno()) {
+                                            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                        }
+                                        $sql = "SELECT * FROM categories";
+                                        $result = mysqli_query($con, $sql);
+                                        ?>
+                                        <select id="club" name="category_id">
+                                            <option value=""></option>
+                                            <?php
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                echo '<option value=' . $row['id'] . '>' . $row['name'] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                     <div class="mb-3">
                                         <label for="image" class="form-label">Select image</label>

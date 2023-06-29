@@ -8,8 +8,7 @@
     $sql = "SELECT * FROM clubs";
     $result = mysqli_query($con, $sql);
 ?>
-      Select Club: 
-      
+
         <select id="club" name="club">
           <option value = ""></option>
         <?php
