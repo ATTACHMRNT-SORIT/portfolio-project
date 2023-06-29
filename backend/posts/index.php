@@ -3,16 +3,12 @@
 <div id="wrapper">
         <!-- Sidebar -->
         <?php include "../inc/sidebar.php"; ?>
-
         <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->
-
-
                 <?php include "../inc/header.php"; ?>
 
                 <!-- End of Topbar -->
