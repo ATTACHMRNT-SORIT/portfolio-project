@@ -43,8 +43,8 @@
                                         $sql = "SELECT * FROM categories";
                                         $result = mysqli_query($con, $sql);
                                         ?>
-                                        <select id="club" name="category_id">
-                                            <option value=""></option>
+                                        <select id="club" name="category_id" class="form-select">
+                                            
                                             <?php
                                             while ($row = mysqli_fetch_array($result)) {
                                                 echo '<option value=' . $row['id'] . '>' . $row['name'] . '</option>';
