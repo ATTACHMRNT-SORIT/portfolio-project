@@ -28,21 +28,19 @@
   $result = mysqli_query($db, $query);
   $result2 = mysqli_query($db, $query2);
   $result3 = mysqli_query($db, $query3);
-  
-  if (! empty($_POST["send"])) {
+
+  if (isset($_POST["send"])) {
     $name = $_POST["name"];
     $email = $_POST["email"];
     $subject = $_POST["subject"];
     $content = $_POST["message"];
-    $stmt = $db->prepare("INSERT INTO contacts (name, email, subject,message) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $name, $email, $subject, $content);
-    $stmt->execute();
-    $message = "Your contact information is saved successfully.";
-    $type = "success";
-    $stmt->close();
-    $conn->close();
-}
-// require_once "contact-view.php";
+    $db = mysqli_connect("localhost", "root", "", "portfolio");
+    // Get all the submitted data from the form
+    $sql = "INSERT INTO contacts (name, email, subject,message) VALUES ('$name', '$email', '$subject','$content')";
+ // Execute query
+ mysqli_query($db, $sql);
+ // require_once "contact-view.php";
+  }    
 
   ?>
   <!--=============== HEADER ===============-->
@@ -345,7 +343,7 @@
 
       <div class="work__filter">
         <span class="work__item active-work" data-filter="all">All</span>
-        
+
       </div>
 
       <div class="work__container container grid">
@@ -414,7 +412,7 @@
               </a>
 
             </div>
-           
+
             <div class="contact__card">
               <i class="bx bxl-messenger contact__card-icon"></i>
               <h3 class="contact__card-title">Messenger</h3>
