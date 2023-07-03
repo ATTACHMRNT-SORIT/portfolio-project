@@ -658,8 +658,7 @@
         <!--=============== FOOTER ===============-->
         <footer class="footer">
           <div class="footer__container container">
-            <h1 class="footer__title">Kevin</h1>
-    
+        
             <ul class="footer__list">
               <li>
                 <a href="#about" class="footer__link">About</a>
@@ -678,17 +677,17 @@
               <a href="https://www.facebook.com/" class="footer__social-link">
                 <i class="bx bxl-facebook"></i>
               </a>
-              <a href="https://instagram.com/" class="footer__social-link">
-                <i class="bx bxl-instagram"></i>
+              <a href="https://twitter.com/" class="footer__social-link">
+                <i class="bx bxl-twitter"></i>
               </a>
               <a href="https://t.me/" class="footer__social-link">
-                <i class="bx bxl-telegram"></i>
+                <i class="bx bxl-instagram"></i>
               </a>
             </ul>
     
     
             <span class="footer__copy">
-              &#169, Bedimcode. All rights reserved
+              &#169, kevdevcodes. All rights reserved
             </span>
     
           </div>
