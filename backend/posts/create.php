@@ -6,7 +6,38 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <div id="wrapper">
-
+<?php
+include "../config.php";
+error_reporting(0);
+ 
+$msg = "";
+ 
+// If upload button is clicked ...
+if (isset($_POST['upload'])) {
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+    $description = $_POST['description'];
+    $category = $_POST['category_id'];
+    $filename = $_FILES["image"]["name"];
+    $tempname = $_FILES["image"]["tmp_name"];
+    $folder = "../uploads/" . $filename;
+ 
+    $db = mysqli_connect("localhost", "root", "", "portfolio");
+ 
+    // Get all the submitted data from the form
+    $sql = "INSERT INTO blogs (image, title, content, description, category_id) VALUES ('$filename', '$title', '$content','$description','$category')";
+ 
+    // Execute query
+    mysqli_query($db, $sql);
+ 
+    // Now let's move the uploaded image into the folder: image
+    if (move_uploaded_file($tempname, $folder)) {
+        echo "<h3>  Image uploaded successfully!</h3>";
+    } else {
+        echo "<h3>  Failed to upload image!</h3>";
+    }
+}
+?>
 
 
 
@@ -33,7 +64,7 @@
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
                                 <h3>Add Post</h3>
-                                <form method="post" action="addentry.php">
+                                <form method="post"  action="" enctype="multipart/form-data">
                                     <div class="mb-3">
                                         <?php
                                         $con = mysqli_connect("localhost", "root", "", "portfolio");
@@ -65,7 +96,7 @@
                                         <input type="text" class="form-control" name="description" id="description">
                                     </div>
                                     <textarea id="summernote" name="content"></textarea>
-                                    <input type="submit" value="submit" name="submit" class="btn btn-lg btn-success" name="submit" />
+                                    <input type="submit" value="submit" name="upload" class="btn btn-lg btn-success" name="submit" />
                                 </form>
                                 <!-- <form>
                             <div class="mb-3">
