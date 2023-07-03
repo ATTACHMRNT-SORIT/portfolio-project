@@ -25,10 +25,18 @@
         <title> Portfolio website </title>
     </head>
     <body>
+    <?php
+                    $db = mysqli_connect("localhost", "root", "", "portfolio");
+                    $query = " SELECT * from blogs ";
+                    $query2 = " SELECT * from projects ";
+                    $result = mysqli_query($db, $query);
+                    $result2 = mysqli_query($db, $query2);
+
+                    ?>
         <!--=============== HEADER ===============-->
         <header class="header" id="header">
           <nav class="nav container">
-            <a href="#" class="nav__logo">Kevin</a>
+            <a href="#" class="nav__logo">Stacy</a>
     
             <div class="nav__menu">
               <ul class="nav__list">
@@ -76,8 +84,8 @@
               <div class="home__container container grid">
                 <div class="home__data">
                   <span class="home__greeting">Hello, I'm</span>
-                  <h1 class="home__name">Kevin Klee</h1>
-                  <h3 class="home__education">Frontend Developer</h3>
+                  <h1 class="home__name">Stacy Nafula</h1>
+                  <h3 class="home__education">Full Stack Developer</h3>
       
                   <div class="home__buttons">
                     <a
@@ -92,7 +100,7 @@
                 </div>
       
                 <div class="home__handle">
-                  <img src="assets/img/about.png" alt="perfill" class="home__img" />
+                  <img src="assets/img/user.jpg" alt="perfill" class="home__img" />
                 </div>
       
                 <div class="home__social">
@@ -126,20 +134,20 @@
               <h2 class="section__title">About me</h2>
       
               <div class="about__container container grid">
-                <img src="assets/img/perfil.png" alt="about img" class="about__img" />
+                <img src="assets/img/user.jpg" alt="about img" class="about__img" />
       
                 <div class="about__data">
                   <div class="about__info">
                     <div class="about__box">
                       <i class="bx bx-award about__icon"></i>
                       <h3 class="about__title">Experience</h3>
-                      <span class="about__subtitle">8 Years Working</span>
+                      <span class="about__subtitle">1 + Years Working</span>
                     </div>
       
                     <div class="about__box">
                       <i class="bx bx-briefcase-alt about__icon"></i>
                       <h3 class="about__title">Completed</h3>
-                      <span class="about__subtitle">48 + Projects</span>
+                      <span class="about__subtitle">4 + Projects</span>
                     </div>
       
                     <div class="about__box">
@@ -285,185 +293,46 @@
               </div>
             </section>
 
-            <!--=============== SERVICES ===============-->
+            <!--=============== BLOGS ===============-->
             <section class="services section">
-              <span class="section__subtitle">My Services</span>
-              <h2 class="section__title">What I Offer</h2>
+              <span class="section__subtitle">Insights</span>
+              <h2 class="section__title">Recent Blogs</h2>
       
-              <div class="services__container container grid">
-                <div class="services__card">
-                  <h3 class="services__title">
-                    Product <br />
-                    Designer
-                  </h3>
+              <div class="blogs__container container grid">
+              <?php
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                    ?>
+
+                <div class="blogs__card">
+                <img src="./backend/uploads/<?php echo $row['image']; ?>" alt="work 1" class="work__img" />
+
+                  <h4 class="blogs__title">
+                  <?php echo $row['title']; ?><br />
+                  
+                  </h4>
       
-                  <span class="services__button">
-                    See more <i class="bx bx-right-arrow-alt services__icon"></i>
+                  <span class="blogs__button">
+                    Read more <i class="bx bx-right-arrow-alt blogs__icon"></i>
                   </span>
       
-                  <div class="services__modal">
-                    <div class="services__modal-content">
-                      <i class="bx bx-x services__modal-close"></i>
+                  <div class="blogs__modal">
+                    <div class="blogs__modal-content">
+                      <i class="bx bx-x blogs__modal-close"></i>
       
-                      <h3 class="services__modal-title">Product Designer</h3>
-                      <p class="services__modal-description">
-                        Service with more than 3 years of experience. Providing
-                        quality work to clients and companies.
+                      <h3 class="blogs__modal-title"><?php echo $row['description']; ?></h3>
+                      <p class="blogs__modal-description">
+                      <?php echo $row['content']; ?>
                       </p>
       
-                      <ul class="services__modal-list">
-                        <li class="services__modal-item">
-                          <i class="bx bx-check services__modal-icon"></i>
-                          <p class="services__modal-info">
-                            I develop the user interface.
-                          </p>
-                        </li>
-      
-                        <li class="services__modal-item">
-                          <i class="bx bx-check services__modal-icon"></i>
-                          <p class="services__modal-info">Web page development.</p>
-                        </li>
-      
-                        <li class="services__modal-item">
-                          <i class="bx bx-check services__modal-icon"></i>
-                          <p class="services__modal-info">
-                            I create ux element interactions.
-                          </p>
-                        </li>
-      
-                        <li class="services__modal-item">
-                          <i class="bx bx-check services__modal-icon"></i>
-                          <p class="services__modal-info">
-                            I position your company brand.
-                          </p>
-                        </li>
-      
-                        <li class="services__modal-item">
-                          <i class="bx bx-check services__modal-icon"></i>
-                          <p class="services__modal-info">
-                            Design and mockups of products for companies.
-                          </p>
-                        </li>
-                      </ul>
+                      <h3 class="blogs__modal-title"><?php echo $row['date']; ?></h3>
                     </div>
                   </div>
                 </div>
-      
-                <div class="services__card">
-                  <h3 class="services__title">
-                    Ui/Ux <br />
-                    Designer
-                  </h3>
-      
-                  <span class="services__button">
-                    See more <i class="bx bx-right-arrow-alt services__icon"></i>
-                  </span>
-      
-                  <div class="services__modal">
-                    <div class="services__modal-content">
-                      <i class="bx bx-x services__modal-close"></i>
-      
-                      <h3 class="services__modal-title">Ui/Ux Designer</h3>
-                      <p class="services__modal-description">
-                        Service with more than 3 years of experience. Providing
-                        quality work to clients and companies.
-                      </p>
-      
-                      <ul class="services__modal-list">
-                        <li class="services__modal-item">
-                          <i class="bx bx-check services__modal-icon"></i>
-                          <p class="services__modal-info">
-                            I develop the user interface.
-                          </p>
-                        </li>
-      
-                        <li class="services__modal-item">
-                          <i class="bx bx-check services__modal-icon"></i>
-                          <p class="services__modal-info">Web page development.</p>
-                        </li>
-      
-                        <li class="services__modal-item">
-                          <i class="bx bx-check services__modal-icon"></i>
-                          <p class="services__modal-info">
-                            I create ux element interactions.
-                          </p>
-                        </li>
-      
-                        <li class="services__modal-item">
-                          <i class="bx bx-check services__modal-icon"></i>
-                          <p class="services__modal-info">
-                            I position your company brand.
-                          </p>
-                        </li>
-      
-                        <li class="services__modal-item">
-                          <i class="bx bx-check services__modal-icon"></i>
-                          <p class="services__modal-info">
-                            Design and mockups of products for companies.
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-      
-                <div class="services__card">
-                  <h3 class="services__title">
-                    Visual <br />
-                    Designer
-                  </h3>
-      
-                  <span class="services__button">
-                    See more <i class="bx bx-right-arrow-alt services__icon"></i>
-                  </span>
-      
-                  <div class="services__modal">
-                    <div class="services__modal-content">
-                      <i class="bx bx-x services__modal-close"></i>
-      
-                      <h3 class="services__modal-title">Visual Designer</h3>
-                      <p class="services__modal-description">
-                        Service with more than 3 years of experience. Providing
-                        quality work to clients and companies.
-                      </p>
-      
-                      <ul class="services__modal-list">
-                        <li class="services__modal-item">
-                          <i class="bx bx-check services__modal-icon"></i>
-                          <p class="services__modal-info">
-                            I develop the user interface.
-                          </p>
-                        </li>
-      
-                        <li class="services__modal-item">
-                          <i class="bx bx-check services__modal-icon"></i>
-                          <p class="services__modal-info">Web page development.</p>
-                        </li>
-      
-                        <li class="services__modal-item">
-                          <i class="bx bx-check services__modal-icon"></i>
-                          <p class="services__modal-info">
-                            I create ux element interactions.
-                          </p>
-                        </li>
-      
-                        <li class="services__modal-item">
-                          <i class="bx bx-check services__modal-icon"></i>
-                          <p class="services__modal-info">
-                            I position your company brand.
-                          </p>
-                        </li>
-      
-                        <li class="services__modal-item">
-                          <i class="bx bx-check services__modal-icon"></i>
-                          <p class="services__modal-info">
-                            Design and mockups of products for companies.
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                <?php }
+                                    }
+                                    ?>
+               
               </div>
             </section>
 
@@ -530,8 +399,8 @@
 
             <!--=============== TESTIMONIALS ===============-->
             <section class="testimonial section">
-              <span class="section__subtitle">My clients say</span>
-              <h2 class="section__title">Testimonial</h2>
+              <span class="section__subtitle">Insights</span>
+              <h2 class="section__title">Latest Blogs</h2>
       
               <div class="testimonial__container container swiper">
                 <div class="swiper-wrapper">
@@ -549,33 +418,6 @@
                     </p>
                   </div>
       
-                  <div class="testimonial__card swiper-slide">
-                    <img
-                      src="assets/img/testimonial2.png"
-                      alt=""
-                      class="testimonial__img"
-                    />
-      
-                    <h3 class="testimonial__name">Paula Vusy</h3>
-                    <p class="testimonial__description">
-                      A really good job, all aspects of the project were followed step
-                      by step and with good results.
-                    </p>
-                  </div>
-      
-                  <div class="testimonial__card swiper-slide">
-                    <img
-                      src="assets/img/testimonial3.png"
-                      alt=""
-                      class="testimonial__img"
-                    />
-      
-                    <h3 class="testimonial__name">Sara Cill</h3>
-                    <p class="testimonial__description">
-                      A really good job, all aspects of the project were followed step
-                      by step and with good results.
-                    </p>
-                  </div>
                 </div>
                 <div class="swiper-pagination"></div>
               </div>
