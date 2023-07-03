@@ -28,11 +28,27 @@
   $result = mysqli_query($db, $query);
   $result2 = mysqli_query($db, $query2);
   $result3 = mysqli_query($db, $query3);
+  
+  if (! empty($_POST["send"])) {
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $subject = $_POST["subject"];
+    $content = $_POST["message"];
+    $stmt = $db->prepare("INSERT INTO contacts (name, email, subject,message) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $name, $email, $subject, $content);
+    $stmt->execute();
+    $message = "Your contact information is saved successfully.";
+    $type = "success";
+    $stmt->close();
+    $conn->close();
+}
+// require_once "contact-view.php";
+
   ?>
   <!--=============== HEADER ===============-->
   <header class="header" id="header">
     <nav class="nav container">
-      <a href="#" class="nav__logo">Stacy</a>
+      <a href="#" class="nav__logo">Hi 👋</a>
 
       <div class="nav__menu">
         <ul class="nav__list">
@@ -79,7 +95,7 @@
     <section class="home section" id="home">
       <div class="home__container container grid">
         <div class="home__data">
-          <span class="home__greeting">Hello, I'm</span>
+          <span class="home__greeting">I'm</span>
           <h1 class="home__name">Stacy Nafula</h1>
           <h3 class="home__education">Full Stack Developer</h3>
 
@@ -87,7 +103,7 @@
             <a download="" href="assets/pdf/Kevin-Cv.pdf" class="button button--ghost">
               Download CV
             </a>
-            <a href="#about" class="button">About me</a>
+            <!-- <a href="#about" class="button">About me</a> -->
           </div>
         </div>
 
@@ -414,27 +430,30 @@
         </div>
 
         <div class="contact__content">
-          <h3 class="contact__title">Write me your project</h3>
+          <h3 class="contact__title">Say Hello</h3>
 
-          <form class="contact__form">
+          <form class="contact__form" method="POST" action="">
             <div class="contact__form-div">
-              <label for="" class="contact__form-tag">Names</label>
-              <input type="text" class="contact__form-input" placeholder="Insert your name">
+              <label for="" class="contact__form-tag">Name</label>
+              <input type="text" name="name" class="contact__form-input" placeholder="Enter your name">
+            </div>
+            <div class="contact__form-div">
+              <label for="" class="contact__form-tag">Subject</label>
+              <input type="text" name="subject" class="contact__form-input" placeholder="Enter the subject">
             </div>
 
-
             <div class="contact__form-div">
-              <label for="" class="contact__form-tag">Mail</label>
-              <input type="email" class="contact__form-input" placeholder="Insert your name">
+              <label for="" class="contact__form-tag">Email</label>
+              <input type="email" name="email" class="contact__form-input" placeholder="Enter your email">
             </div>
 
 
             <div class="contact__form-div contact__form-area">
-              <label for="" class="contact__form-tag">Project</label>
-              <textarea class="contact__form-input" cols="30" rows="10" placeholder="Write a commnet"></textarea>
+              <label for="" class="contact__form-tag">Message</label>
+              <textarea name="message" class="contact__form-input" cols="30" rows="10" placeholder="Write a message"></textarea>
             </div>
 
-            <button class="button">Send Message</button>
+            <button class="button" type="submit" name="send">Send Message</button>
           </form>
         </div>
       </div>
