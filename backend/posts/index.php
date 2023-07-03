@@ -36,6 +36,7 @@
                                         <th>Content</th>
                                         <th>Date</th>
                                         <th>Category</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
 
@@ -55,7 +56,6 @@
                                       
                                                 <td><?php echo $row['category_id']; ?></td>
                                                 <td>
-                                                    <a href="edit.php?id=<?php echo $row['id'] ?>" class="btn btn-primary">Edit</a>
                                                     <a href="delete.php?id=<?php echo $row['id'] ?>" class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>
