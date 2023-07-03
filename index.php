@@ -37,10 +37,10 @@
     $db = mysqli_connect("localhost", "root", "", "portfolio");
     // Get all the submitted data from the form
     $sql = "INSERT INTO contacts (name, email, subject,message) VALUES ('$name', '$email', '$subject','$content')";
- // Execute query
- mysqli_query($db, $sql);
- // require_once "contact-view.php";
-  }    
+    // Execute query
+    mysqli_query($db, $sql);
+    // require_once "contact-view.php";
+  }
 
   ?>
   <!--=============== HEADER ===============-->
@@ -162,7 +162,7 @@
             interface, I have years of experience and many clients are happy
             with the projects carried out.
           </p>
-          <a href="#contact" class="button">Contact me</a>
+          <!-- <a href="#contact" class="button">Contact me</a> -->
         </div>
       </div>
     </section>
